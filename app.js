@@ -475,9 +475,6 @@ function hexToRgb(hex) {
 //   isDrawing = false;
 // }
 
-
-
-
 function convertToPdf ()  {
   const text = document.getElementById('text-input').value;
 
@@ -489,4 +486,7 @@ function convertToPdf ()  {
 
   // Save the PDF document to a file
   doc.save("my-document.pdf");
+
+
+
 }
