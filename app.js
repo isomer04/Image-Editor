@@ -9,6 +9,9 @@
 // 7. Delete any rectangle.
 // 8. Save the changes to a new image.
 
+import  jsPDF  from "jspdf";
+
+
 // Get the canvas and its context
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
@@ -46,8 +49,13 @@ imageInput.addEventListener("change", () => {
 // Draw rectangle
 let isDrawing = false;
 let rectX, rectY, rectWidth, rectHeight;
+let lastX = 0;
+let lastY = 0;
+let hue = 0;
 let selectedRect = null;
 let rectangles = [];
+
+
 canvas.addEventListener("mousedown", (event) => {
   if (image) {
     isDrawing = true;
@@ -89,6 +97,8 @@ canvas.addEventListener("mouseup", () => {
     });
   }
 });
+
+
 
 // Delete rectangle
 // let deleteRect = false;
@@ -318,6 +328,11 @@ imageSizeSlider.addEventListener("input", () => {
 //   });
 
 const form = document.getElementById("image-form");
+const galleryContainer = document.getElementById('image-gallery');
+const carouselInner = document.getElementsByClassName('carousel-inner');
+
+
+
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -328,6 +343,39 @@ form.addEventListener("submit", (event) => {
   const colorInput = document.getElementById("color-input");
 
   const file = fileInput.files[0];
+
+  // Create an <img> element
+  const imgElement = document.createElement('img');
+
+  // Set the src attribute to the uploaded file
+  imgElement.src = URL.createObjectURL(file);
+
+  console.log(imgElement.src);
+
+  console.log(URL.createObjectURL(file) + " img src")
+  
+  let imageWithElements = `<div class="carousel-item">
+  <img src="${URL.createObjectURL(file)}" alt="First slide">
+</div>`;
+
+
+// Create a new element from the HTML string
+const newElement = document.createElement('div');
+newElement.innerHTML = imageWithElements;
+
+// Append the new element to the carousel inner
+carouselInner.appendChild(newElement.firstChild);
+
+// carouselInner.appendChild(imageWithElements);
+
+
+ 
+    // carouselInner.innerHTML=imageWithElements;
+
+  
+
+  // Add the <img> element to the gallery container
+  galleryContainer.appendChild(imgElement);
 
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
@@ -393,3 +441,52 @@ function hexToRgb(hex) {
 //   console.log('Selected color:', color);
 //   // use the selected color for image manipulation or other purposes
 // });
+
+
+// //draw
+
+// canvas.addEventListener('mousedown', startDrawing);
+// canvas.addEventListener('mousemove', draw);
+// canvas.addEventListener('mouseup', stopDrawing);
+// canvas.addEventListener('mouseout', stopDrawing);
+
+// function startDrawing(event) {
+//   isDrawing = true;
+//   [lastX, lastY] = [event.offsetX, event.offsetY];
+// }
+
+// function draw(event) {
+//   if (!isDrawing) return;
+  
+//   ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+//   ctx.lineCap = 'round';
+//   ctx.lineWidth = 10;
+  
+//   ctx.beginPath();
+//   ctx.moveTo(lastX, lastY);
+//   ctx.lineTo(event.offsetX, event.offsetY);
+//   ctx.stroke();
+  
+//   [lastX, lastY] = [event.offsetX, event.offsetY];
+//   hue++;
+// }
+
+// function stopDrawing() {
+//   isDrawing = false;
+// }
+
+
+
+
+function convertToPdf ()  {
+  const text = document.getElementById('text-input').value;
+
+  // Create a new jsPDF instance
+  const doc = new jsPDF();
+
+  // Add the text to the PDF document
+  doc.text(text, 10, 10);
+
+  // Save the PDF document to a file
+  doc.save("my-document.pdf");
+}

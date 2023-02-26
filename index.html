@@ -7,15 +7,19 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
     <link
       href="https://fonts.googleapis.com/css?family=Lato"
       rel="stylesheet"
     />
 
     <link rel="stylesheet" href="style.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script type="module" src="app.js" ></script>
     <!-- <style>
     canvas {
       position: absolute;
@@ -75,8 +79,81 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div id="image-gallery"></div>
+      </div>
     </div>
 
-    <script src="app.js" defer></script>
+    <!-- <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3">
+          <a href="path/to/image" data-toggle="lightbox" data-gallery="example-gallery" class="d-block mb-4">
+            <img src="path/to/image" alt="Image" class="img-fluid rounded">
+          </a>
+        </div>
+        <div class="col-md-3">
+          <a href="path/to/image" data-toggle="lightbox" data-gallery="example-gallery" class="d-block mb-4">
+            <img src="path/to/image" alt="Image" class="img-fluid rounded">
+          </a>
+        </div>
+        <div class="col-md-3">
+          <a href="path/to/image" data-toggle="lightbox" data-gallery="example-gallery" class="d-block mb-4">
+            <img src="path/to/image" alt="Image" class="img-fluid rounded">
+          </a>
+        </div>
+        <div class="col-md-3">
+          <a href="path/to/image" data-toggle="lightbox" data-gallery="example-gallery" class="d-block mb-4">
+            <img src="path/to/image" alt="Image" class="img-fluid rounded">
+          </a>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- HTML for the Bootstrap carousel -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+
+      <!-- Wrapper for carousel items -->
+      <div class="carousel-inner"></div>
+
+      <!-- Controls -->
+      <a
+        class="carousel-control-prev"
+        href="#myCarousel"
+        role="button"
+        data-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a
+        class="carousel-control-next"
+        href="#myCarousel"
+        role="button"
+        data-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+
+
+    <h1>PDF Converter</h1>
+    <form>
+      <div>
+        <label for="text-input">Enter your text:</label>
+        <textarea id="text-input" rows="10"></textarea>
+      </div>
+      <button type="button" onclick="convertToPdf()">Convert to PDF</button>
+    </form>
+
+
+
+    
   </body>
 </html>
